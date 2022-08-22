@@ -20,29 +20,13 @@ Node* treeBuild(int arr[],int n,int i){
     temp->right = treeBuild(arr,n,(2*i +2));
     return temp;
 }
-void preorder(Node* root){
-    if(root==NULL){
-        return;
-    }
-    cout<<root->data<<"\t";
-    preorder(root->left);
-    preorder(root->right);
-}
-void inorder(Node* root){
-    if(root==NULL){
-        return;
-    }
-    inorder(root->left);
-    cout<<root->data<<"\t";
-    inorder(root->right);
-}
-void postorder(Node* root){
-    if(root==NULL){
-        return;
-    }
-    postorder(root->left);
-    postorder(root->right);
-    cout<<root->data<<"\t";
+void treeReverse(Node* root){
+    if(root == NULL)return;
+    Node* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+    treeReverse(root->left);
+    treeReverse(root->right);
 }
 void levelorder(Node* root){
     queue<Node*> q;
@@ -67,25 +51,11 @@ int main(){
     }
     Node* root;
     root = treeBuild(a,n,0);
-    // cout<<"root -->>"<<root->data;
-    cout<<"\n";
-    cout<<"preorder->";
-    preorder(root);
-    cout<<"\n";
-    cout<<"inorder->";
-    inorder(root);
-    cout<<"\n";
-    cout<<"postorder->";
-    postorder(root);
-    cout<<"\n";
-    cout<<"levelorder->";
+    cout<<root->data<<"\n";
+    cout<<"Without Reversal\n";
     levelorder(root);
-
-    // Node* root = new Node(n);
-    // cout<<root->data;
-    // Node* temp = root;
-    // for(int i = 1 ; i< n ; i++){
-        
-    // }
-    return 0;
+    cout<<"\nAfter Reversal\n";
+    treeReverse(root);
+    levelorder(root);
+    // cout<<"root -->>"<<root->data;
 }
