@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.js": "javascriptreact",
+        "xutility": "cpp",
+        "queue": "cpp"
+    }
+}
